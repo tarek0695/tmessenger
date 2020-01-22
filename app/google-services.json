@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1001152474865",
+    "firebase_url": "https://tchat-d1e6e.firebaseio.com",
+    "project_id": "tchat-d1e6e",
+    "storage_bucket": "tchat-d1e6e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1001152474865:android:7db6ace4f3c5a44fbc4350",
+        "android_client_info": {
+          "package_name": "com.pixelhubllc.tchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1001152474865-k7aa782r3j1c46sur752clghpeejuar8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pixelhubllc.tchat",
+            "certificate_hash": "287f273caa54b99f31d1393b70982fcbe3e7b19a"
+          }
+        },
+        {
+          "client_id": "1001152474865-p55vtro1gbmkcr84is88aek74k8lgb1j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjAxWdi2gGqeRwItR_B3HNbkwA3uiy670"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1001152474865-p55vtro1gbmkcr84is88aek74k8lgb1j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
