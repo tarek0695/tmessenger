@@ -34,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
 
         InitializeFields();
         mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,15 +82,6 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (currentUser != null){
-            SendUserToMainActivity();
-        }
-
-    }
-
     private void InitializeFields()
     {
         loginButton = (Button) findViewById(R.id.login_button);
@@ -105,7 +95,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void SendUserToMainActivity() {
         Intent mainActivityIntent = new Intent(LoginActivity.this, MainActivity.class);
+        mainActivityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainActivityIntent);
+        finish();
     }
 
 
