@@ -37,6 +37,7 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginLeft="17dp"
                 android:layout_marginRight="17dp"
+                android:textSize="20sp"
                 />
             <EditText
                 android:layout_width="match_parent"
@@ -49,9 +50,10 @@
                 android:background="@drawable/inputs"
                 android:padding="17dp"
                 android:drawableStart="@drawable/ic_lock"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="17dp"
                 android:layout_marginRight="17dp"
+                android:textSize="20sp"
                 />
             <TextView
                 android:id="@+id/forgot_password_link"
@@ -60,21 +62,20 @@
                 android:layout_centerHorizontal="true"
                 android:text="Forget Password?"
                 android:layout_below="@+id/login_password"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="17dp"
                 android:layout_marginRight="17dp"
                 android:textAlignment="textEnd"
-                android:textSize="17sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimaryDark"
-
+                android:textSize="20sp"
                 />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/login_button"
                 android:layout_below="@+id/forgot_password_link"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginLeft="17dp"
                 android:layout_marginRight="17dp"
                 android:text="Login"
@@ -94,7 +95,7 @@
                 android:layout_marginLeft="17dp"
                 android:layout_marginRight="17dp"
                 android:textAlignment="center"
-                android:textSize="17sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/colorPrimaryDark"
                 />
@@ -109,7 +110,7 @@
                 android:layout_marginLeft="17dp"
                 android:layout_marginRight="17dp"
                 android:textAlignment="center"
-                android:textSize="17sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 />
             <Button

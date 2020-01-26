@@ -25,8 +25,8 @@
         android:hint="Email..."
         android:inputType="textEmailAddress"
         android:background="@drawable/inputs"
-        android:padding="17dp"
         android:drawableStart="@drawable/ic_email"
+        android:padding="17dp"
         android:layout_marginTop="25dp"
         android:layout_marginLeft="17dp"
         android:layout_marginRight="17dp"
@@ -43,7 +43,7 @@
         android:background="@drawable/inputs"
         android:padding="17dp"
         android:drawableStart="@drawable/ic_lock"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="17dp"
         android:layout_marginRight="17dp"
         />
