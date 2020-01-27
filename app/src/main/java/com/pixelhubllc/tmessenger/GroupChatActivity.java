@@ -60,8 +60,12 @@ public class GroupChatActivity extends AppCompatActivity {
         sendMessageImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 saveMessageInfoToDatabase();
+
                 userMessageInput.setText("");
+
+                myScrollView.fullScroll(ScrollView.FOCUS_DOWN);
             }
         });
     }
@@ -181,7 +185,9 @@ public class GroupChatActivity extends AppCompatActivity {
             String chatName = (String) ((DataSnapshot)iterator.next()).getValue();
             String chatTime = (String) ((DataSnapshot)iterator.next()).getValue();
 
-            displayTextMessages.append(chatName + " : \n" + chatMessage + "\n" + chatTime + "   " +chatDate);
+            displayTextMessages.append(chatName + " :\n" + chatMessage + "\n" + chatTime + "   " +chatDate + "\n\n\n");
+
+            myScrollView.fullScroll(ScrollView.FOCUS_DOWN);
         }
     }
 
