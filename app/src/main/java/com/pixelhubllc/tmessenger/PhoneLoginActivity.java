@@ -83,7 +83,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
                 String verificationCode = inputVerificationCode.getText().toString();
 
                 if (TextUtils.isEmpty(verificationCode)) {
-                    Toast.makeText(PhoneLoginActivity.this, "", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PhoneLoginActivity.this, "Input Verification code", Toast.LENGTH_SHORT).show();
                 } else {
                     loadingBar.setTitle("Verification code");
                     loadingBar.setMessage("Please wait, we are writing verification code...");
@@ -135,6 +135,8 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
 
     }
+
+
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
