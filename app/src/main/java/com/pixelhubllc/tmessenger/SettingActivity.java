@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +23,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -35,9 +40,12 @@ public class SettingActivity extends AppCompatActivity {
     private EditText userName, userStatus;
     private CircleImageView userProfileImage;
 
+    private ProgressDialog loadingBar;
+
     private String currentUserId;
     private FirebaseAuth mAuth;
     private DatabaseReference rootReference;
+    private StorageReference userProfileImageRef;
 
     private static int galleryPick = 1;
 
@@ -49,6 +57,7 @@ public class SettingActivity extends AppCompatActivity {
         mAuth =FirebaseAuth.getInstance();
         currentUserId = mAuth.getCurrentUser().getUid();
         rootReference = FirebaseDatabase.getInstance().getReference();
+        userProfileImageRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
 
         InitializeFields();
         retriveUserInfo();
@@ -87,7 +96,55 @@ public class SettingActivity extends AppCompatActivity {
         }
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
+
+            if (resultCode == RESULT_OK){
+
+                loadingBar.setTitle("Set Profile Image");
+                loadingBar.setMessage("Please wait, your profile photo is updating..");
+                loadingBar.setCanceledOnTouchOutside(false);
+                loadingBar.show();
+
+                Uri resultUri = result.getUri();
+
+                StorageReference filePath = userProfileImageRef.child(currentUserId + ".jpg");
+
+                filePath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                        if (task.isSuccessful()){
+
+                            Toast.makeText(SettingActivity.this, "Profile Image uploaded successfully", Toast.LENGTH_SHORT).show();
+
+                            final String downloadurl = task.getResult().getDownloadUrl().toString();
+
+                            rootReference.child("Users").child(currentUserId).child("image")
+                                    .setValue(downloadurl).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                    if (task.isSuccessful()){
+
+                                        Toast.makeText(SettingActivity.this, "Image save in database", Toast.LENGTH_SHORT).show();
+                                        loadingBar.dismiss();
+                                    }
+                                    else {
+                                        String message = task.getException().toString();
+                                        Toast.makeText(SettingActivity.this, message, Toast.LENGTH_SHORT).show();
+                                        loadingBar.dismiss();
+                                    }
+                                }
+                            });
+                        }
+                        else {
+                            String message = task.getException().toString();
+                            Toast.makeText(SettingActivity.this, message, Toast.LENGTH_SHORT).show();
+                            loadingBar.dismiss();
+                        }
+                    }
+                });
+            }
         }
     }
 
@@ -138,6 +195,7 @@ public class SettingActivity extends AppCompatActivity {
 
                             userName.setText(retriveUserName);
                             userStatus.setText(retriveStatus);
+                            Picasso.get().load(retriveProfileImg).into(userProfileImage);
                         }
                         else if ((dataSnapshot.exists()) && (dataSnapshot.hasChild("name"))){
 
@@ -165,6 +223,7 @@ public class SettingActivity extends AppCompatActivity {
         userName = findViewById(R.id.set_user_name);
         userStatus = findViewById(R.id.set_profile_status);
         userProfileImage = findViewById(R.id.set_profile_image);
+        loadingBar = new ProgressDialog(this);
 
     }
 
