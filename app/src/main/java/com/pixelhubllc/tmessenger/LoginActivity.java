@@ -83,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
                         SendUserToMainActivity();
+                        loadingBar.dismiss();
                     } else {
                         String message = task.getException().toString();
                         Toast.makeText(LoginActivity.this,"error"+ message, Toast.LENGTH_SHORT).show();
