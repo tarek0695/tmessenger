@@ -3,6 +3,7 @@ package com.pixelhubllc.tmessenger;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -48,6 +49,8 @@ public class SettingActivity extends AppCompatActivity {
     private StorageReference userProfileImageRef;
 
     private static int galleryPick = 1;
+
+    private Toolbar settingsToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,12 +163,12 @@ public class SettingActivity extends AppCompatActivity {
             Toast.makeText(this, "Please write your status first", Toast.LENGTH_SHORT).show();
         }
         else {
-            HashMap<String, String> profileMap = new HashMap<>();
+            HashMap<String, Object> profileMap = new HashMap<>();
             profileMap.put("uid", currentUserId);
             profileMap.put("name", setUserName);
             profileMap.put("status", setStatus);
 
-            rootReference.child("Users").child(currentUserId).setValue(profileMap)
+            rootReference.child("Users").child(currentUserId).updateChildren(profileMap)
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -224,6 +227,12 @@ public class SettingActivity extends AppCompatActivity {
         userStatus = findViewById(R.id.set_profile_status);
         userProfileImage = findViewById(R.id.set_profile_image);
         loadingBar = new ProgressDialog(this);
+
+        settingsToolbar = findViewById(R.id.setting_toolbar);
+        setSupportActionBar(settingsToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setTitle("Account Settings");
 
     }
 

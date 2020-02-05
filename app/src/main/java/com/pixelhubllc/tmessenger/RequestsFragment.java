@@ -91,6 +91,8 @@ public class RequestsFragment extends Fragment {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.exists()) {
+
+
                                     String type = dataSnapshot.getValue().toString();
 
                                     if (type.equals("received")) {
@@ -136,13 +138,13 @@ public class RequestsFragment extends Fragment {
                                                                                     @Override
                                                                                     public void onComplete(@NonNull Task<Void> task) {
                                                                                         if (task.isSuccessful()) {
-                                                                                            contactsRef.child(currentUserID).child(list_user_id)
+                                                                                            chatRequestsRef.child(currentUserID).child(list_user_id)
                                                                                                     .removeValue()
                                                                                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                                                         @Override
                                                                                                         public void onComplete(@NonNull Task<Void> task) {
                                                                                                             if (task.isSuccessful()) {
-                                                                                                                contactsRef.child(list_user_id).child(currentUserID)
+                                                                                                                chatRequestsRef.child(list_user_id).child(currentUserID)
                                                                                                                         .removeValue()
                                                                                                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                                                                             @Override
@@ -163,19 +165,19 @@ public class RequestsFragment extends Fragment {
                                                                     });
                                                                 }
                                                                 if (i == 1) {
-                                                                    contactsRef.child(currentUserID).child(list_user_id)
+                                                                    chatRequestsRef.child(currentUserID).child(list_user_id)
                                                                             .removeValue()
                                                                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                                 @Override
                                                                                 public void onComplete(@NonNull Task<Void> task) {
                                                                                     if (task.isSuccessful()) {
-                                                                                        contactsRef.child(list_user_id).child(currentUserID)
+                                                                                        chatRequestsRef.child(list_user_id).child(currentUserID)
                                                                                                 .removeValue()
                                                                                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                                                                     @Override
                                                                                                     public void onComplete(@NonNull Task<Void> task) {
                                                                                                         if (task.isSuccessful()) {
-                                                                                                            Toast.makeText(getContext(), "Contact Deleted", Toast.LENGTH_SHORT).show();
+                                                                                                            Toast.makeText(getContext(), "Friend Request Deleted", Toast.LENGTH_SHORT).show();
                                                                                                         }
                                                                                                     }
                                                                                                 });
