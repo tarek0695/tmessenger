@@ -42,7 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
         userRef = FirebaseDatabase.getInstance().getReference().child("Users");
         chatRequestRef = FirebaseDatabase.getInstance().getReference().child("Chat Requests");
         contactsRef = FirebaseDatabase.getInstance().getReference().child("Contacts");
-        notificationRef = FirebaseDatabase.getInstance().getReference().child("Notification");
+        notificationRef = FirebaseDatabase.getInstance().getReference().child("Notifications");
 
         //this profile just you visited
         receiverUserId = getIntent().getExtras().get("visit_user_id").toString();
@@ -276,9 +276,12 @@ public class ProfileActivity extends AppCompatActivity {
                                                             @Override
                                                             public void onComplete(@NonNull Task<Void> task) {
 
-                                                                sendMessageRequestButton.setEnabled(true);
-                                                                currentState = "request_sent";
-                                                                sendMessageRequestButton.setText("Cancel Friend Request");
+                                                                if( task.isSuccessful()){
+                                                                    sendMessageRequestButton.setEnabled(true);
+                                                                    currentState = "request_sent";
+                                                                    sendMessageRequestButton.setText("Cancel Friend Request");
+
+                                                                }
 
                                                             }
                                                         });
