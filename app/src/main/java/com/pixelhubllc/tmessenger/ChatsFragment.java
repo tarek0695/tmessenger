@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,6 +97,30 @@ public class ChatsFragment extends Fragment {
 
                                     chatsViewHolder.userName.setText(retName);
                                     chatsViewHolder.userStatus.setText("Last seen: " + "\n" + "Date " + " Time");
+
+                                    if (dataSnapshot.child("userState").hasChild("state")){
+
+                                        String state = dataSnapshot.child("userState").child("state").getValue().toString();
+                                        String date = dataSnapshot.child("userState").child("date").getValue().toString();
+                                        String time = dataSnapshot.child("userState").child("time").getValue().toString();
+
+                                        Log.d("state", state);
+                                 
+                                        if (state.equals("online"))
+                                        {
+                                            chatsViewHolder.userStatus.setText("online");
+                                           // chatsViewHolder.onlineIcon.setVisibility(View.VISIBLE);
+                                        }
+                                        else if (state.equals("offline"))
+                                        {
+                                            chatsViewHolder.userStatus.setText("Last Seen: " + date + " " + time);
+                                           // chatsViewHolder.onlineIcon.setVisibility(View.INVISIBLE);
+
+                                        }
+                                    }
+                                    else {
+                                        chatsViewHolder.userStatus.setText("offline");
+                                    }
 
                                     chatsViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                                         @Override

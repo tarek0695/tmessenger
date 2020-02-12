@@ -268,7 +268,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                                                 HashMap<String, String> chatNotificationMap = new HashMap<>();
                                                 chatNotificationMap.put("from", senderUserId);
-                                                chatNotificationMap.put("type", "requests");
+                                                chatNotificationMap.put("type", "request");
 
                                                 notificationRef.child(receiverUserId).push()
                                                         .setValue(chatNotificationMap)
