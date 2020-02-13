@@ -87,11 +87,11 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             }
         });
 
-        holder.receiverMessageText.setVisibility(View.INVISIBLE);
-        holder.receiverProfileImage.setVisibility(View.INVISIBLE);
-        holder.senderMessageText.setVisibility(View.INVISIBLE);
-        holder.messageSenderPicture.setVisibility(View.INVISIBLE);
-        holder.messageReceiverPicture.setVisibility(View.INVISIBLE);
+        holder.receiverMessageText.setVisibility(View.GONE);
+        holder.receiverProfileImage.setVisibility(View.GONE);
+        holder.senderMessageText.setVisibility(View.GONE);
+        holder.messageSenderPicture.setVisibility(View.GONE);
+        holder.messageReceiverPicture.setVisibility(View.GONE);
 
         if (fromMessageType.equals("text")){
 
@@ -100,7 +100,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
                 holder.senderMessageText.setVisibility(View.VISIBLE);
                 holder.senderMessageText.setBackgroundResource(R.drawable.sender_message_layout);
                 holder.senderMessageText.setTextColor(Color.BLACK);
-                holder.senderMessageText.setText(messages.getMessage());
+                holder.senderMessageText.setText(messages.getMessage() + "\n \n" + messages.getTime() + " - " + messages.getDate());
             }
             else {
                 holder.receiverProfileImage.setVisibility(View.VISIBLE);
@@ -108,7 +108,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
                 holder.receiverMessageText.setBackgroundResource(R.drawable.receiver_message_layout);
                 holder.receiverMessageText.setTextColor(Color.BLACK);
-                holder.receiverMessageText.setText(messages.getMessage());
+                holder.receiverMessageText.setText(messages.getMessage() + "\n \n" + messages.getTime() + " - " + messages.getDate());
             }
         }
 

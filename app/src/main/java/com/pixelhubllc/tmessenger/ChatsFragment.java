@@ -109,11 +109,13 @@ public class ChatsFragment extends Fragment {
                                         if (state.equals("online"))
                                         {
                                             chatsViewHolder.userStatus.setText("online");
+                                            Log.d("state", state + " online ");
                                            // chatsViewHolder.onlineIcon.setVisibility(View.VISIBLE);
                                         }
                                         else if (state.equals("offline"))
                                         {
                                             chatsViewHolder.userStatus.setText("Last Seen: " + date + " " + time);
+                                            Log.d("state", state + " ofline ");
                                            // chatsViewHolder.onlineIcon.setVisibility(View.INVISIBLE);
 
                                         }
