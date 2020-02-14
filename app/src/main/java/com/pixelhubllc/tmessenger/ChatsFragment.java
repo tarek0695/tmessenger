@@ -105,7 +105,7 @@ public class ChatsFragment extends Fragment {
                                         String time = dataSnapshot.child("userState").child("time").getValue().toString();
 
                                         Log.d("state", state);
-                                 
+
                                         if (state.equals("online"))
                                         {
                                             chatsViewHolder.userStatus.setText("online");
